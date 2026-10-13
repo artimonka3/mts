@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"ae0c207d4b0b5fd9","x":-160,"y":-340,"width":250,"height":60,"type":"text","text":"Получение расшифровки текста"},
+		{"id":"676e18469bc3348b","x":-235,"y":320,"width":400,"height":120,"type":"file","file":"Модель хорошо определяет с дополнительным промтом примера.md"},
+		{"id":"9f86650d6ed85141","x":240,"y":330,"width":400,"height":100,"type":"file","file":"Модель было дообучена методом QLoRA.md"},
+		{"id":"0ecb322c80e4ad97","x":-160,"y":680,"width":250,"height":120,"type":"text","text":"Договорённость была отправлена в очередь на уведомление пользователю с прямыми цитатами"},
+		{"id":"41442f7c8dffb679","x":-160,"y":40,"width":250,"height":136,"type":"text","text":"Алгоритм, определяет основные параметры для создания задачи, определяет срок, статус, степень уверенности"},
+		{"id":"fc8b4f0ef95a8efa","x":-720,"y":341,"width":400,"height":79,"type":"file","file":"Модель уже хорошо определяет.md"},
+		{"id":"b2843fa8a1019e5a","x":-160,"y":-160,"width":250,"height":101,"type":"text","text":"Модель обрабатывает данные, обнаруживает договорённости"},
+		{"id":"ff80f6b2f2af4a4c","x":165,"y":710,"width":250,"height":60,"type":"text","text":"Обновить статистику по договорённости"},
+		{"id":"037171945bbe765b","x":-580,"y":710,"width":250,"height":60,"color":"3","type":"text","text":"Договорённость была одобрена пользователем"},
+		{"id":"3315b85fd8fbb6c3","x":-580,"y":829,"width":250,"height":123,"type":"text","text":"Задача была добавлена в календарь / синхронизирована с внешним календарём"},
+		{"id":"9a0a273c67ccc6a1","x":115,"y":861,"width":250,"height":60,"type":"text","text":"Запуск Summary всего, что было сказано"},
+		{"id":"454c11e311ea6d59","x":165,"y":1040,"width":250,"height":160,"type":"text","text":"Добавилась ли новая информация о человеке? Если да, то внести её о нём отдельно под метрикой важной информации"},
+		{"id":"7fcdd0564153bff3","x":515,"y":796,"width":250,"height":190,"color":"4","type":"text","text":"Сбор (возможной) биографии человека/клиента на основе предыдущих звонков. (Можно спросить, чтобы подтвердить пользователю, внести свои правки)"},
+		{"id":"8c992340d76317fa","x":765,"y":1093,"width":250,"height":55,"type":"text","text":"Связывание двух Summary между собой."}
+	],
+	"edges":[
+		{"id":"31267c4202cc609a","fromNode":"ae0c207d4b0b5fd9","fromSide":"bottom","toNode":"b2843fa8a1019e5a","toSide":"top"},
+		{"id":"3c8e5db438f3eb55","fromNode":"b2843fa8a1019e5a","fromSide":"bottom","toNode":"41442f7c8dffb679","toSide":"top"},
+		{"id":"9ff5f3982f496c3d","fromNode":"41442f7c8dffb679","fromSide":"left","toNode":"fc8b4f0ef95a8efa","toSide":"top"},
+		{"id":"3231894b1ac41be4","fromNode":"41442f7c8dffb679","fromSide":"bottom","toNode":"676e18469bc3348b","toSide":"top"},
+		{"id":"48c2c0e877b98078","fromNode":"41442f7c8dffb679","fromSide":"right","toNode":"9f86650d6ed85141","toSide":"top"},
+		{"id":"ad9dcf60f3306662","fromNode":"fc8b4f0ef95a8efa","fromSide":"bottom","toNode":"0ecb322c80e4ad97","toSide":"top"},
+		{"id":"58b9bff458d03034","fromNode":"9f86650d6ed85141","fromSide":"bottom","toNode":"0ecb322c80e4ad97","toSide":"top"},
+		{"id":"bea7ffd3505fe6ab","fromNode":"676e18469bc3348b","fromSide":"bottom","toNode":"0ecb322c80e4ad97","toSide":"top"},
+		{"id":"6656e1d0c187e74c","fromNode":"0ecb322c80e4ad97","fromSide":"right","toNode":"ff80f6b2f2af4a4c","toSide":"left"},
+		{"id":"7b1b5f13c8cab907","fromNode":"0ecb322c80e4ad97","fromSide":"bottom","toNode":"9a0a273c67ccc6a1","toSide":"left"},
+		{"id":"238f3628bb672a44","fromNode":"0ecb322c80e4ad97","fromSide":"left","toNode":"037171945bbe765b","toSide":"right"},
+		{"id":"402e770f14950976","fromNode":"037171945bbe765b","fromSide":"bottom","toNode":"3315b85fd8fbb6c3","toSide":"top"},
+		{"id":"cd8aeb8a597c3e00","fromNode":"9a0a273c67ccc6a1","fromSide":"right","toNode":"7fcdd0564153bff3","toSide":"left"},
+		{"id":"b77ae2f55d1f67b4","fromNode":"7fcdd0564153bff3","fromSide":"bottom","toNode":"454c11e311ea6d59","toSide":"right"},
+		{"id":"a0bfc5cae2fec09b","fromNode":"7fcdd0564153bff3","fromSide":"bottom","toNode":"8c992340d76317fa","toSide":"left"}
+	]
+}
