@@ -1,4 +1,13 @@
+enum CallDirection { incoming, outgoing, missed }
+
 enum CommitmentOwner { us, client }
+
+class ChatMessage {
+  ChatMessage({required this.fromUser, required this.text});
+
+  final bool fromUser;
+  final String text;
+}
 
 enum CommitmentStatus { open, done }
 
@@ -85,6 +94,7 @@ class CallRecord {
     required this.summary,
     required this.turns,
     required this.durationSec,
+    this.direction = CallDirection.incoming,
   });
 
   final String id;
@@ -93,4 +103,5 @@ class CallRecord {
   final String summary;
   final List<Turn> turns;
   final int durationSec;
+  final CallDirection direction;
 }

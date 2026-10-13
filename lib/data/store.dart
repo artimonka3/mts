@@ -15,7 +15,57 @@ class Store extends ChangeNotifier {
   final List<Client> clients = [];
   final List<CallRecord> calls = [];
   final List<Commitment> commitments = [];
+  final Map<String, List<ChatMessage>> chats = {};
   int _seq = 100;
+
+  List<ChatMessage> chatOf(String callId) => chats[callId] ?? const [];
+
+  void addChat(String callId, ChatMessage message) {
+    chats.putIfAbsent(callId, () => []).add(message);
+    notifyListeners();
+  }
+
+  /// Перенос людей с телефона. Уже существующие номера пропускаются.
+  int importPeople(
+    List<({String name, String? company, String phone})> people,
+  ) {
+    var added = 0;
+    for (final person in people) {
+      final name = person.name.trim();
+      final phone = person.phone.trim();
+      if (name.isEmpty || phone.isEmpty) continue;
+      if (_findByPhone(phone) != null) continue;
+      clients.add(
+        Client(
+          id: _id(),
+          name: name,
+          company: person.company?.trim().isEmpty ?? true
+              ? null
+              : person.company!.trim(),
+          phone: phone,
+          tone: clients.length % C.tones.length,
+        ),
+      );
+      added++;
+    }
+    if (added > 0) notifyListeners();
+    return added;
+  }
+
+  Client? _findByPhone(String phone) {
+    final tail = _tail(phone);
+    if (tail.length < 6) return null;
+    for (final client in clients) {
+      if (_tail(client.phone ?? '') == tail) return client;
+    }
+    return null;
+  }
+
+  String _tail(String phone) {
+    final digits = phone.replaceAll(RegExp(r'\D'), '');
+    if (digits.length <= 9) return digits;
+    return digits.substring(digits.length - 9);
+  }
 
   String _id() => '${_seq++}';
 
@@ -98,7 +148,7 @@ class Store extends ChangeNotifier {
     notifyListeners();
   }
 
-  void save({
+  CallRecord save({
     required String clientName,
     required String company,
     required String phone,
@@ -107,6 +157,7 @@ class Store extends ChangeNotifier {
     required List<Turn> turns,
     required int durationSec,
     required List<CommitmentDraft> drafts,
+    CallDirection direction = CallDirection.outgoing,
   }) {
     final client =
         _find(clientName, company) ??
@@ -138,6 +189,7 @@ class Store extends ChangeNotifier {
       summary: summary,
       turns: [...turns],
       durationSec: durationSec,
+      direction: direction,
     );
     calls.add(call);
     for (final draft in drafts) {
@@ -155,6 +207,7 @@ class Store extends ChangeNotifier {
       );
     }
     notifyListeners();
+    return call;
   }
 
   Client? _find(String name, String company) {
@@ -228,6 +281,13 @@ class Store extends ChangeNotifier {
           'Небольшой бюджет',
         ],
       ),
+      Client(
+        id: 'missed',
+        name: '+375 (29) 609-20-72',
+        phone: '+375296092072',
+        tone: 4,
+        facts: const ['Просил перезвонить по договору на сим-карты'],
+      ),
     ]);
 
     calls.addAll([
@@ -236,6 +296,7 @@ class Store extends ChangeNotifier {
         clientId: 'alexey',
         createdAt: atTime(pastWeekday(DateTime.thursday), 15, 10),
         durationSec: 11 * 60,
+        direction: CallDirection.outgoing,
         summary: 'Корпоративные номера для «БелСтрой»: 40 сим, бюджет до 800 руб. КП с роумингом, список сотрудников и созвон по договору.',
         turns: const [
           Turn(
@@ -298,6 +359,7 @@ class Store extends ChangeNotifier {
         clientId: 'dmitry',
         createdAt: atTime(addDays(0), 11, 5),
         durationSec: 8 * 60,
+        direction: CallDirection.outgoing,
         summary: 'Пилот М2М на 10 машин вместо всего парка. Завтра — схема и список бортовых номеров.',
         turns: const [
           Turn(
@@ -327,6 +389,7 @@ class Store extends ChangeNotifier {
         clientId: 'olga',
         createdAt: atTime(addDays(-9), 16, 40),
         durationSec: 4 * 60,
+        direction: CallDirection.outgoing,
         summary: 'Гостевой Wi-Fi и касса для кофейни. Тариф отправлен, счёт клиент оплачивает.',
         turns: const [
           Turn(
@@ -342,6 +405,20 @@ class Store extends ChangeNotifier {
             text: 'Тариф уже на почте. Там отдельная сеть для гостей и сеть для кассы.',
           ),
           Turn(ours: false, text: 'Получила, спасибо. Оплачиваю.'),
+        ],
+      ),
+      CallRecord(
+        id: 'call-missed',
+        clientId: 'missed',
+        createdAt: atTime(addDays(-1), 18, 42),
+        durationSec: 28,
+        direction: CallDirection.missed,
+        summary: 'Пропущенный. В голосовом сообщении просят перезвонить по договору на корпоративные сим-карты.',
+        turns: const [
+          Turn(
+            ours: false,
+            text: 'Добрый день, это по договору на сим-карты. Перезвоните, пожалуйста, сегодня.',
+          ),
         ],
       ),
     ]);

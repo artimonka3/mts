@@ -4,6 +4,7 @@ import '../data/store.dart';
 import '../routes.dart';
 import '../theme.dart';
 import '../widgets/common.dart';
+import 'live_call_screen.dart';
 
 class ClientScreen extends StatelessWidget {
   const ClientScreen({super.key, required this.clientId});
@@ -36,6 +37,30 @@ class ClientScreen extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Text(client.name, style: T.title),
+            const SizedBox(height: 14),
+            SizedBox(
+              width: double.infinity,
+              height: 52,
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF007AFF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                onPressed: client.phone == null
+                    ? null
+                    : () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => LiveCallScreen(clientId: client.id),
+                          ),
+                        );
+                      },
+                icon: const Icon(Icons.phone_rounded),
+                label: const Text('Позвонить и разобрать'),
+              ),
+            ),
             if (client.company != null) ...[
               const SizedBox(height: 6),
               Text(
@@ -101,7 +126,7 @@ class ClientScreen extends StatelessWidget {
               ],
             if (calls.isNotEmpty) ...[
               const SizedBox(height: 16),
-              const SectionLabel('Звонки'),
+              const SectionLabel('История разговоров'),
               for (final call in calls) ...[
                 CallCard(call: call, onTap: () => openCall(context, call.id)),
                 const SizedBox(height: 10),

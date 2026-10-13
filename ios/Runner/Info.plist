@@ -26,6 +26,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>Чтобы перенести контакты с телефона в приложение.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Чтобы слышать разговор на громкой связи и сделать саммари.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Чтобы перевести разговор в текст и кратко пересказать его.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

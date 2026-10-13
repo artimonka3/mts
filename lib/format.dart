@@ -94,6 +94,20 @@ String clock(int seconds) {
   return '$m:$s';
 }
 
+/// Время как в журнале «Вызовы»: «10:18 AM» или «Вчера».
+String recentsWhen(DateTime d) {
+  final diff = dateOnly(DateTime.now()).difference(dateOnly(d)).inDays;
+  if (diff == 0) {
+    final hour = d.hour;
+    final am = hour >= 12 ? 'PM' : 'AM';
+    final h = hour % 12 == 0 ? 12 : hour % 12;
+    final m = d.minute.toString().padLeft(2, '0');
+    return '$h:$m $am';
+  }
+  if (diff == 1) return 'Вчера';
+  return shortDate(d);
+}
+
 String callWhen(DateTime d) {
   final diff = dateOnly(DateTime.now()).difference(dateOnly(d)).inDays;
   final t = hm(d);

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../data/store.dart';
-import '../screens/calls_screen.dart';
-import '../screens/capture_screen.dart';
 import '../screens/clients_screen.dart';
+import '../screens/recents_screen.dart';
 import '../screens/today_screen.dart';
 import '../theme.dart';
 
@@ -18,113 +16,67 @@ class Shell extends StatefulWidget {
 class _ShellState extends State<Shell> {
   int index = 0;
 
-  Future<void> _openCapture() async {
-    final saved = await Navigator.of(context).push<bool>(
-      MaterialPageRoute<bool>(
-        fullscreenDialog: true,
-        builder: (_) => const CaptureScreen(),
-      ),
-    );
-    if (!mounted || saved != true) return;
-    setState(() => index = 0);
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Договорённости в карточке клиента'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final overdue = Store.of(context).overdueCount;
     return Scaffold(
-      backgroundColor: C.paper,
+      backgroundColor: Colors.white,
       body: SafeArea(
         bottom: false,
         child: IndexedStack(
           index: index,
           children: [
+            const RecentsScreen(key: Key('recents')),
+            const ClientsScreen(),
             TodayScreen(
               key: const Key('today'),
-              onAllCalls: () => setState(() => index = 1),
+              onAllCalls: () => setState(() => index = 0),
             ),
-            const CallsScreen(),
-            const ClientsScreen(),
           ],
         ),
       ),
-      bottomNavigationBar: DecoratedBox(
-        decoration: const BoxDecoration(
-          color: C.card,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0x0A000000),
-              blurRadius: 12,
-              offset: Offset(0, -2),
-            ),
-          ],
-        ),
-        child: SafeArea(
-          top: false,
-          child: SizedBox(
-            height: 64,
-            child: Row(
-              children: [
-                _Tab(
-                  itemKey: const Key('tab-today'),
-                  icon: Icons.home_rounded,
-                  label: 'Сегодня',
-                  selected: index == 0,
-                  alert: overdue > 0,
-                  onTap: () => setState(() => index = 0),
-                ),
-                _Tab(
-                  itemKey: const Key('tab-calls'),
-                  icon: Icons.phone_in_talk_rounded,
-                  label: 'Звонки',
-                  selected: index == 1,
-                  onTap: () => setState(() => index = 1),
-                ),
-                _Tab(
-                  itemKey: const Key('tab-clients'),
-                  icon: Icons.people_alt_rounded,
-                  label: 'Клиенты',
-                  selected: index == 2,
-                  onTap: () => setState(() => index = 2),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 14, left: 4),
-                  child: Semantics(
-                    button: true,
-                    label: 'Записать разговор',
-                    child: GestureDetector(
-                      key: const Key('record'),
-                      onTap: _openCapture,
-                      child: Container(
-                        width: 48,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          color: C.red,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x33E30613),
-                              blurRadius: 10,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.mic_rounded,
-                          color: Colors.white,
-                          size: 22,
-                        ),
-                      ),
-                    ),
-                  ),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: const Color(0xF2FFFFFF),
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x22000000),
+                  blurRadius: 18,
+                  offset: Offset(0, 6),
                 ),
               ],
+            ),
+            child: SizedBox(
+              height: 62,
+              child: Row(
+                children: [
+                  _Tab(
+                    itemKey: const Key('tab-calls'),
+                    icon: Icons.access_time_filled_rounded,
+                    label: 'Вызовы',
+                    selected: index == 0,
+                    onTap: () => setState(() => index = 0),
+                  ),
+                  _Tab(
+                    itemKey: const Key('tab-clients'),
+                    icon: Icons.person_rounded,
+                    label: 'Контакты',
+                    selected: index == 1,
+                    onTap: () => setState(() => index = 1),
+                  ),
+                  _Tab(
+                    itemKey: const Key('tab-today'),
+                    icon: Icons.grid_view_rounded,
+                    label: 'Задачи',
+                    selected: index == 2,
+                    onTap: () => setState(() => index = 2),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -139,7 +91,6 @@ class _Tab extends StatelessWidget {
     required this.label,
     required this.selected,
     required this.onTap,
-    this.alert = false,
     this.itemKey,
   });
 
@@ -147,12 +98,11 @@ class _Tab extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  final bool alert;
   final Key? itemKey;
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? C.red : C.mute;
+    final color = selected ? const Color(0xFF007AFF) : C.mute;
     return Expanded(
       child: GestureDetector(
         key: itemKey,
@@ -164,31 +114,7 @@ class _Tab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 28,
-              height: 24,
-              child: Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.center,
-                children: [
-                  Icon(icon, size: 24, color: color),
-                  if (alert)
-                    Positioned(
-                      right: -2,
-                      top: -2,
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: C.red,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: C.card, width: 1.5),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+            Icon(icon, size: 24, color: color),
             const SizedBox(height: 2),
             Text(
               label,
@@ -206,7 +132,7 @@ class _Tab extends StatelessWidget {
               width: selected ? 4 : 0,
               height: selected ? 4 : 0,
               decoration: const BoxDecoration(
-                color: C.red,
+                color: Color(0xFF007AFF),
                 shape: BoxShape.circle,
               ),
             ),
