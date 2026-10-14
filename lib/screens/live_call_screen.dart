@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../data/agent_settings.dart';
 import '../data/call_agent.dart';
+import '../data/mts_api.dart';
 import '../data/store.dart';
 import '../data/summarize.dart';
 import '../format.dart';
@@ -199,6 +200,21 @@ class _LiveCallScreenState extends State<LiveCallScreen> {
       durationSec: _seconds,
       drafts: talk.drafts,
     );
+    if (settings.hasSession && audioFileUsable(audioPath)) {
+      try {
+        await MtsApi(settings).uploadCall(
+          audioPath: audioPath!,
+          title: client.name,
+          clientId: client.id.contains('-') ? client.id : null,
+        );
+      } on Exception catch (error) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Запись не ушла на сервер: $error')),
+          );
+        }
+      }
+    }
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(builder: (_) => CallScreen(callId: saved.id)),

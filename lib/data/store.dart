@@ -143,6 +143,29 @@ class Store extends ChangeNotifier {
     return ad.compareTo(bd);
   }
 
+  void mergeRemote({
+    required List<Client> remoteClients,
+    required List<Commitment> remoteTasks,
+  }) {
+    for (final client in remoteClients) {
+      final index = clients.indexWhere((item) => item.id == client.id);
+      if (index >= 0) {
+        clients[index] = client;
+      } else {
+        clients.add(client);
+      }
+    }
+    for (final task in remoteTasks) {
+      final index = commitments.indexWhere((item) => item.id == task.id);
+      if (index >= 0) {
+        commitments[index] = task;
+      } else {
+        commitments.add(task);
+      }
+    }
+    notifyListeners();
+  }
+
   void addTask({
     required String text,
     required DateTime day,

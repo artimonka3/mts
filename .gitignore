@@ -60,7 +60,7 @@ dist/
 
 # Local generated data: audio, PostgreSQL dumps and runtime output
 .local/
-data/
+/data/
 *.dump
 *.sql.gz
 
