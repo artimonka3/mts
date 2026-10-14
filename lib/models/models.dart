@@ -12,10 +12,13 @@ class ChatMessage {
 enum CommitmentStatus { open, done }
 
 class Turn {
-  const Turn({required this.ours, required this.text});
+  const Turn({required this.ours, required this.text, this.label});
 
   final bool ours;
   final String text;
+
+  /// Подпись спикера, если роль ещё не сведена к «мы / клиент».
+  final String? label;
 }
 
 class CommitmentDraft {
@@ -52,8 +55,8 @@ class Commitment {
   final String clientId;
   final CommitmentOwner owner;
   final String text;
-  final DateTime? dueDate;
-  final String? dueText;
+  DateTime? dueDate;
+  String? dueText;
   final String? quote;
   CommitmentStatus status;
 

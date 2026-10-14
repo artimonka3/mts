@@ -143,7 +143,7 @@ class _CallScreenState extends State<CallScreen> {
                               child: Text(
                                 'История разговоров',
                                 style: TextStyle(
-                                  color: Color(0xFF007AFF),
+                                  color: C.red,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 13,
                                 ),
@@ -259,7 +259,7 @@ class _CallScreenState extends State<CallScreen> {
           const SizedBox(height: 12),
           for (final turn in call.turns) ...[
             Text(
-              turn.ours ? 'Мы' : name,
+              turn.label ?? (turn.ours ? 'Мы' : name),
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

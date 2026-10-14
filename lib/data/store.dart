@@ -143,6 +143,50 @@ class Store extends ChangeNotifier {
     return ad.compareTo(bd);
   }
 
+  void addTask({
+    required String text,
+    required DateTime day,
+    String? clientId,
+    CommitmentOwner owner = CommitmentOwner.us,
+  }) {
+    final clean = text.trim();
+    if (clean.isEmpty) return;
+    commitments.add(
+      Commitment(
+        id: _id(),
+        callId: '',
+        clientId: clientId ?? '',
+        owner: owner,
+        text: clean,
+        dueDate: dateOnly(day),
+        dueText: shortDate(day),
+      ),
+    );
+    notifyListeners();
+  }
+
+  void plan(Commitment c, DateTime day) {
+    c.dueDate = dateOnly(day);
+    c.dueText = shortDate(day);
+    notifyListeners();
+  }
+
+  List<Commitment> onDay(DateTime day) {
+    final target = dateOnly(day);
+    final list = commitments.where((c) {
+      if (c.dueDate == null) return false;
+      return dateOnly(c.dueDate!) == target;
+    }).toList();
+    list.sort((a, b) {
+      if (a.isDone != b.isDone) return a.isDone ? 1 : -1;
+      return a.text.compareTo(b.text);
+    });
+    return list;
+  }
+
+  List<Commitment> get unscheduled =>
+      commitments.where((c) => !c.isDone && c.dueDate == null).toList();
+
   void toggle(Commitment c) {
     c.status = c.isDone ? CommitmentStatus.open : CommitmentStatus.done;
     notifyListeners();

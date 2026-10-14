@@ -43,7 +43,7 @@ class ClientScreen extends StatelessWidget {
               height: 52,
               child: FilledButton.icon(
                 style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFF007AFF),
+                  backgroundColor: C.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

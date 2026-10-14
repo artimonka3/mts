@@ -5,11 +5,13 @@ class TalkSummary {
     required this.summary,
     required this.turns,
     required this.drafts,
+    this.facts = const [],
   });
 
   final String summary;
   final List<Turn> turns;
   final List<CommitmentDraft> drafts;
+  final List<String> facts;
 }
 
 /// Короткое саммари по расшифровке, без внешнего ИИ.

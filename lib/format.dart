@@ -39,6 +39,23 @@ DateTime thursdayNextWeek() {
 int dayDiff(DateTime d) =>
     dateOnly(d).difference(dateOnly(DateTime.now())).inDays;
 
+const _monthsNom = [
+  'январь',
+  'февраль',
+  'март',
+  'апрель',
+  'май',
+  'июнь',
+  'июль',
+  'август',
+  'сентябрь',
+  'октябрь',
+  'ноябрь',
+  'декабрь',
+];
+
+String monthTitle(DateTime d) => '${_monthsNom[d.month - 1]} ${d.year}';
+
 const _monthsGen = [
   'января',
   'февраля',

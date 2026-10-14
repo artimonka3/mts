@@ -5,6 +5,7 @@ import '../format.dart';
 import '../models/models.dart';
 import '../routes.dart';
 import '../theme.dart';
+import 'agent_settings_screen.dart';
 import 'live_call_screen.dart';
 
 /// Журнал как «Вызовы»: сюда попадают разобранные сотовые звонки.
@@ -21,17 +22,33 @@ class RecentsScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(8, 8, 8, 24),
         children: [
-          const SizedBox(
+          SizedBox(
             height: 44,
-            child: Center(
-              child: Text(
-                'Вызовы',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                  color: C.ink,
+            child: Row(
+              children: [
+                const SizedBox(width: 48),
+                const Expanded(
+                  child: Text(
+                    'Вызовы',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      color: C.ink,
+                    ),
+                  ),
                 ),
-              ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const AgentSettingsScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.tune_rounded),
+                ),
+              ],
             ),
           ),
           for (final call in calls)
@@ -138,14 +155,14 @@ class _Row extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xFF007AFF),
+                    color: C.red,
                     width: 1.4,
                   ),
                 ),
                 child: const Icon(
                   Icons.phone_rounded,
                   size: 16,
-                  color: Color(0xFF007AFF),
+                  color: C.red,
                 ),
               ),
             ),
@@ -173,7 +190,7 @@ class _Avatar extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF8FB7FF), Color(0xFF4C8DFF)],
+          colors: [Color(0xFFFF6B6B), Color(0xFFE30613)],
         ),
       ),
       child: letter == null

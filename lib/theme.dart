@@ -30,9 +30,9 @@ abstract final class C {
   static const tones = <Color>[
     Color(0xFFE30613),
     Color(0xFF1A1A1A),
-    Color(0xFF5856D6),
-    Color(0xFF007AFF),
-    Color(0xFF34C759),
+    Color(0xFFB0000A),
+    Color(0xFF8A8A8A),
+    Color(0xFF5C0006),
   ];
 
   static List<BoxShadow> get cardShadow => const [

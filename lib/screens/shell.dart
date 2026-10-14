@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../screens/clients_screen.dart';
 import '../screens/recents_screen.dart';
-import '../screens/today_screen.dart';
+import '../screens/calendar_screen.dart';
 import '../theme.dart';
 
 class Shell extends StatefulWidget {
@@ -27,10 +27,7 @@ class _ShellState extends State<Shell> {
           children: [
             const RecentsScreen(key: Key('recents')),
             const ClientsScreen(),
-            TodayScreen(
-              key: const Key('today'),
-              onAllCalls: () => setState(() => index = 0),
-            ),
+            const CalendarScreen(key: Key('today')),
           ],
         ),
       ),
@@ -70,7 +67,7 @@ class _ShellState extends State<Shell> {
                   ),
                   _Tab(
                     itemKey: const Key('tab-today'),
-                    icon: Icons.grid_view_rounded,
+                    icon: Icons.calendar_month_rounded,
                     label: 'Задачи',
                     selected: index == 2,
                     onTap: () => setState(() => index = 2),
@@ -102,7 +99,7 @@ class _Tab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? const Color(0xFF007AFF) : C.mute;
+    final color = selected ? C.red : C.mute;
     return Expanded(
       child: GestureDetector(
         key: itemKey,
@@ -132,7 +129,7 @@ class _Tab extends StatelessWidget {
               width: selected ? 4 : 0,
               height: selected ? 4 : 0,
               decoration: const BoxDecoration(
-                color: Color(0xFF007AFF),
+                color: C.red,
                 shape: BoxShape.circle,
               ),
             ),
