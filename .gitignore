@@ -1,0 +1,14 @@
+# Состояние интерфейса: вкладки, панели, открытые заметки
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Кэш Obsidian
+.obsidian/cache/
+
+# Удалённые заметки
+.trash/
+
+# Системные файлы macOS и Windows
+.DS_Store
+Thumbs.db
+Desktop.ini
