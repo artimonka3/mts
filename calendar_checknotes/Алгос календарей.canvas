@@ -1,0 +1,12 @@
+{
+	"nodes":[
+		{"id":"b5b32e160961f11c","x":-200,"y":-320,"width":265,"height":90,"type":"text","text":"Передача информации о договорённости в календарь."},
+		{"id":"fac7bbc2e02c4354","x":-420,"y":-180,"width":165,"height":60,"type":"text","text":"Наш календарь"},
+		{"id":"048ed0fbc4d10faf","x":180,"y":-180,"width":250,"height":60,"type":"text","text":"CRM-другой календарь"},
+		{"id":"320ad47c7c913e4a","x":-120,"y":-40,"width":250,"height":60,"type":"text","text":"Экспорт в общий формат"}
+	],
+	"edges":[
+		{"id":"e82b4081c6af1d8c","fromNode":"b5b32e160961f11c","fromSide":"bottom","toNode":"fac7bbc2e02c4354","toSide":"right"},
+		{"id":"51bb69aa0eec0f8b","fromNode":"b5b32e160961f11c","fromSide":"bottom","toNode":"048ed0fbc4d10faf","toSide":"left"}
+	]
+}
