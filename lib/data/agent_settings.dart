@@ -5,7 +5,7 @@ class AgentSettings {
     this.apiKey = '',
     this.baseUrl = 'https://api.openai.com/v1',
     this.model = 'gpt-4o-mini',
-    this.serverUrl = 'http://127.0.0.1:8000',
+    this.serverUrl = defaultServer,
     this.sessionCookie = '',
     this.csrfToken = '',
   });
@@ -16,6 +16,10 @@ class AgentSettings {
   String serverUrl;
   String sessionCookie;
   String csrfToken;
+
+  static const defaultServer = 'http://10.65.158.39:8000';
+  static const demoLogin = 'demo';
+  static const demoPassword = 'dogovor-demo';
 
   bool get hasKey => apiKey.trim().isNotEmpty;
   bool get hasSession =>
@@ -34,10 +38,17 @@ class AgentSettings {
       apiKey: prefs.getString(_key) ?? '',
       baseUrl: prefs.getString(_url) ?? 'https://api.openai.com/v1',
       model: prefs.getString(_model) ?? 'gpt-4o-mini',
-      serverUrl: prefs.getString(_server) ?? 'http://127.0.0.1:8000',
+      serverUrl: _serverUrl(prefs.getString(_server)),
       sessionCookie: prefs.getString(_cookie) ?? '',
       csrfToken: prefs.getString(_csrf) ?? '',
     );
+  }
+
+  static String _serverUrl(String? saved) {
+    if (saved == null || saved.isEmpty || saved.contains('127.0.0.1')) {
+      return defaultServer;
+    }
+    return saved;
   }
 
   Future<void> save() async {

@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'data/agent_settings.dart';
+import 'data/mts_api.dart';
 import 'data/store.dart';
 import 'screens/shell.dart';
 import 'theme.dart';
@@ -26,6 +30,22 @@ class DogovorApp extends StatefulWidget {
 
 class _DogovorAppState extends State<DogovorApp> {
   final store = Store();
+
+  @override
+  void initState() {
+    super.initState();
+    if (Platform.environment['FLUTTER_TEST'] == 'true') return;
+    _connectBackend();
+  }
+
+  Future<void> _connectBackend() async {
+    try {
+      final settings = await AgentSettings.load();
+      await MtsApi(settings).connect(store);
+    } on Exception {
+      // Сервер может быть выключен: журнал остаётся на данных телефона.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

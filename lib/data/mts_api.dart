@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/models.dart';
 import 'agent_settings.dart';
+import 'store.dart';
 
 class BackendException implements Exception {
   BackendException(this.message);
@@ -25,6 +26,14 @@ class MtsApi {
     if (settings.hasSession) 'Cookie': 'mts_session=${settings.sessionCookie}',
     if (settings.csrfToken.isNotEmpty) 'X-CSRF-Token': settings.csrfToken,
   };
+
+  /// Вход demo и загрузка клиентов с задачами. Ошибка сети не ломает локальные данные.
+  Future<void> connect(Store store) async {
+    await login(AgentSettings.demoLogin, AgentSettings.demoPassword);
+    final people = await clients();
+    final items = await tasks();
+    store.mergeRemote(remoteClients: people, remoteTasks: items);
+  }
 
   Future<void> login(String login, String password) async {
     final response = await http
