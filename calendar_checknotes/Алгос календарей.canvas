@@ -1,12 +1,15 @@
 {
 	"nodes":[
-		{"id":"b5b32e160961f11c","x":-200,"y":-320,"width":265,"height":90,"type":"text","text":"Передача информации о договорённости в календарь."},
-		{"id":"fac7bbc2e02c4354","x":-420,"y":-180,"width":165,"height":60,"type":"text","text":"Наш календарь"},
-		{"id":"048ed0fbc4d10faf","x":180,"y":-180,"width":250,"height":60,"type":"text","text":"CRM-другой календарь"},
-		{"id":"320ad47c7c913e4a","x":-140,"y":-60,"width":250,"height":60,"type":"text","text":"Экспорт в общий формат"}
+		{"id":"b5b32e160961f11c","type":"text","text":"Передача информации о договорённости в календарь.","x":-200,"y":-320,"width":265,"height":90},
+		{"id":"fac7bbc2e02c4354","type":"text","text":"Наш календарь","x":-420,"y":-180,"width":165,"height":60},
+		{"id":"048ed0fbc4d10faf","type":"text","text":"CRM-другой календарь","x":180,"y":-180,"width":250,"height":60},
+		{"id":"320ad47c7c913e4a","type":"text","text":"Экспорт в общий формат iCalendar","x":180,"y":-60,"width":250,"height":60},
+		{"id":"0b56eeb9afa796a3","x":-464,"y":-76,"width":253,"height":92,"type":"text","text":"Размещение информации там согласно ТЗ и фронтенду"}
 	],
 	"edges":[
 		{"id":"e82b4081c6af1d8c","fromNode":"b5b32e160961f11c","fromSide":"bottom","toNode":"fac7bbc2e02c4354","toSide":"right"},
-		{"id":"51bb69aa0eec0f8b","fromNode":"b5b32e160961f11c","fromSide":"bottom","toNode":"048ed0fbc4d10faf","toSide":"left"}
+		{"id":"51bb69aa0eec0f8b","fromNode":"b5b32e160961f11c","fromSide":"bottom","toNode":"048ed0fbc4d10faf","toSide":"left"},
+		{"id":"7b5407a2eab43ad7","fromNode":"048ed0fbc4d10faf","fromSide":"bottom","toNode":"320ad47c7c913e4a","toSide":"top"},
+		{"id":"b387002df601e046","fromNode":"fac7bbc2e02c4354","fromSide":"bottom","toNode":"0b56eeb9afa796a3","toSide":"top"}
 	]
 }
