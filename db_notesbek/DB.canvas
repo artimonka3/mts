@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"4bdb7519806d86d3","type":"text","text":"Список пользователей программы","x":-440,"y":-120,"width":250,"height":60},
+		{"id":"b3400f2109f265a7","type":"text","text":"Список клиентов, с которыми были звонки","x":-440,"y":0,"width":250,"height":60,"color":"2"},
+		{"id":"51dea06042f00b43","x":-440,"y":120,"width":250,"height":60,"type":"text","text":"Поле языка для корректного определения"},
+		{"id":"3125fc04ef6438ec","x":-440,"y":240,"width":250,"height":60,"color":"6","type":"text","text":"Список звонков"},
+		{"id":"6edd000c18469f05","x":-505,"y":598,"width":250,"height":110,"color":"5","type":"text","text":"В контексте смысла и обработки мы объединяем, но чётко разделяем слова"},
+		{"id":"946fcb5119b5dfbf","type":"text","text":"Postgres SQL","x":352,"y":15,"width":145,"height":60,"color":"1"},
+		{"id":"c55d3d4895127375","type":"text","text":"Струкура БД привязки summary и договорённостей к каждому звонку.","x":-80,"y":0,"width":325,"height":90,"color":"1"},
+		{"id":"d76eca922a758240","x":-500,"y":398,"width":310,"height":65,"color":"6","type":"text","text":"структурирования объединения реплик друг за другом."},
+		{"id":"2804efb2dca07738","x":-943,"y":633,"width":250,"height":60,"color":"3","type":"text","text":"У каждого звонка свой summary"},
+		{"id":"1b26ce9d2c118aa2","x":-943,"y":75,"width":280,"height":90,"color":"3","type":"text","text":"У каждого клиента свой summary,. Мы называем это биографией. Факты о клиенте."},
+		{"id":"81dc19703fe81e0e","x":-1240,"y":255,"width":297,"height":70,"type":"text","text":"Темы пользователя, для удобного поиска, классификации"},
+		{"id":"52b6bb06e44177cd","x":-46,"y":338,"width":250,"height":60,"color":"5","type":"text","text":"У каждого звонка – список договорённостей"},
+		{"id":"51c04cbf36269802","x":274,"y":443,"width":280,"height":50,"type":"text","text":"Все поля по договорённости"},
+		{"id":"bb8f1172609573c0","x":334,"y":338,"width":160,"height":60,"type":"text","text":"Договорённость"},
+		{"id":"d60aae614effbfba","x":352,"y":546,"width":125,"height":57,"type":"text","text":"Дата/сроки"}
+	],
+	"edges":[
+		{"id":"13e2d4e410bf3e47","fromNode":"c55d3d4895127375","fromSide":"right","toNode":"946fcb5119b5dfbf","toSide":"left"},
+		{"id":"289e25234c03122b","fromNode":"4bdb7519806d86d3","fromSide":"bottom","toNode":"b3400f2109f265a7","toSide":"top"},
+		{"id":"6c59eb2ea037bc44","fromNode":"3125fc04ef6438ec","fromSide":"bottom","toNode":"d76eca922a758240","toSide":"top"},
+		{"id":"a3baae6acb17a9f5","fromNode":"3125fc04ef6438ec","fromSide":"right","toNode":"52b6bb06e44177cd","toSide":"left"},
+		{"id":"20879da91446fc6e","fromNode":"6edd000c18469f05","fromSide":"right","toNode":"52b6bb06e44177cd","toSide":"bottom"},
+		{"id":"1681a481fc835b28","fromNode":"3125fc04ef6438ec","fromSide":"left","toNode":"2804efb2dca07738","toSide":"top"},
+		{"id":"d30841eff55c428c","fromNode":"1b26ce9d2c118aa2","fromSide":"bottom","toNode":"2804efb2dca07738","toSide":"top"},
+		{"id":"107a07929d8816ed","fromNode":"b3400f2109f265a7","fromSide":"left","toNode":"1b26ce9d2c118aa2","toSide":"right"},
+		{"id":"4417d0a94104aad3","fromNode":"52b6bb06e44177cd","fromSide":"right","toNode":"bb8f1172609573c0","toSide":"left"},
+		{"id":"f5c8a42825ceee96","fromNode":"bb8f1172609573c0","fromSide":"bottom","toNode":"51c04cbf36269802","toSide":"top"},
+		{"id":"54957e3dc3651750","fromNode":"51c04cbf36269802","fromSide":"bottom","toNode":"d60aae614effbfba","toSide":"top"},
+		{"id":"4da64e9cbbe3d130","fromNode":"b3400f2109f265a7","fromSide":"bottom","toNode":"51dea06042f00b43","toSide":"top"},
+		{"id":"324da4f1901e3eaf","fromNode":"51dea06042f00b43","fromSide":"bottom","toNode":"3125fc04ef6438ec","toSide":"top"},
+		{"id":"493e19515fe0983a","fromNode":"2804efb2dca07738","fromSide":"right","toNode":"6edd000c18469f05","toSide":"left"},
+		{"id":"93f272b30251ffea","fromNode":"1b26ce9d2c118aa2","fromSide":"bottom","toNode":"6edd000c18469f05","toSide":"left"},
+		{"id":"9ffe9ec1ede6bc62","fromNode":"d76eca922a758240","fromSide":"bottom","toNode":"6edd000c18469f05","toSide":"top"},
+		{"id":"bd13fb13745b20c0","fromNode":"81dc19703fe81e0e","fromSide":"bottom","toNode":"2804efb2dca07738","toSide":"top"},
+		{"id":"cd94d1ba16d82ee4","fromNode":"1b26ce9d2c118aa2","fromSide":"bottom","toNode":"81dc19703fe81e0e","toSide":"right"}
+	]
+}
