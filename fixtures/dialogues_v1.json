@@ -1,0 +1,2684 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "synthetic-text-v1",
+  "created_on": "2026-10-14",
+  "synthetic": true,
+  "text_only": true,
+  "no_real_audio": true,
+  "measurement_status": {
+    "asr": "not_measured",
+    "diarization": "not_measured",
+    "llm": "not_measured"
+  },
+  "annotation_source": "codex_authored_fixture",
+  "human_review_status": "pending",
+  "offset_unit": "unicode_code_points",
+  "offset_convention": "zero_based_half_open",
+  "split": "development_only",
+  "warning": "Синтетический текстовый набор для разработки. Нет реального аудио. Не доказывает точность ASR или LLM; отдельный real-audio holdout ещё нужен.",
+  "dialogues": [
+    {
+      "id": "syn_01",
+      "title": "КП с абсолютной датой",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Пришлите коммерческое предложение до 17 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Да, отправлю вам КП до 17 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "absolute_date",
+        "request_acceptance"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить коммерческое предложение",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 17 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-17"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 53,
+                "quote": "Пришлите коммерческое предложение до 17 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 39,
+                "quote": "Да, отправлю вам КП до 17 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 53,
+            "quote": "Пришлите коммерческое предложение до 17 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 39,
+            "quote": "Да, отправлю вам КП до 17 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_02",
+      "title": "Обязательство без срока",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Мне нужен прайс.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я отправлю вам актуальный прайс.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "unknown_due"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить актуальный прайс",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "unknown",
+              "timezone": "Europe/Minsk",
+              "original_text": null,
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": true,
+              "ambiguity_reasons": [
+                "deadline_not_stated"
+              ]
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [
+              "due"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 32,
+                "quote": "Я отправлю вам актуальный прайс.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 32,
+            "quote": "Я отправлю вам актуальный прайс.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_03",
+      "title": "Две встречные договорённости",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я пришлю договор до 16 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "А я отправлю реквизиты до 15 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "multiple_agreements"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить договор",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 16 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-16"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 36,
+                "quote": "Я пришлю договор до 16 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          },
+          {
+            "id": "g2",
+            "action": "Отправить реквизиты",
+            "obligor_participant_id": "p_client",
+            "recipient_participant_id": "p_manager",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 15 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-15"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 42,
+                "quote": "А я отправлю реквизиты до 15 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 36,
+            "quote": "Я пришлю договор до 16 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 42,
+            "quote": "А я отправлю реквизиты до 15 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_04",
+      "title": "Просьба без согласия",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Вы можете прислать расчёт к пятнице?",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Мне нужно сначала уточнить возможность у коллег.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "negative",
+        "request_only"
+      ],
+      "gold": {
+        "agreements": [],
+        "events": [],
+        "key_phrases": [],
+        "negative_reason": "Нет принятого обещания или самостоятельного обязательства; вопрос не считается договорённостью."
+      }
+    },
+    {
+      "id": "syn_05",
+      "title": "Гипотетическое действие",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Если бы мы подключили сервис, отчёт готовился бы автоматически.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Понятно, пока только изучаем варианты.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "negative",
+        "hypothetical"
+      ],
+      "gold": {
+        "agreements": [],
+        "events": [],
+        "key_phrases": [],
+        "negative_reason": "Обсуждается гипотеза, никто не берёт обязательство."
+      }
+    },
+    {
+      "id": "syn_06",
+      "title": "Обещание с невыполненным условием",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Когда отправите оборудование?",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Если поступит оплата, отправлю вам оборудование через 3 дня.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "conditional",
+        "unknown_due"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить оборудование",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "unknown",
+              "timezone": "Europe/Minsk",
+              "original_text": "через 3 дня после оплаты",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": true,
+              "ambiguity_reasons": [
+                "conditional_reference_event_unknown"
+              ]
+            },
+            "condition": "После поступления оплаты; факт и дата оплаты не подтверждены",
+            "eligibility": "needs_review",
+            "needs_details": [
+              "condition",
+              "due"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 60,
+                "quote": "Если поступит оплата, отправлю вам оборудование через 3 дня.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 60,
+            "quote": "Если поступит оплата, отправлю вам оборудование через 3 дня.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_07",
+      "title": "Отмена ранее обсуждённого",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я отправлю вам демо-доступ до 16 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Демо пока не нужно, отменяем отправку.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s3",
+          "position": 2,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Хорошо, отправку отменяю.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "cancellation",
+        "negative_final"
+      ],
+      "gold": {
+        "agreements": [],
+        "events": [
+          {
+            "kind": "cancelled",
+            "description": "Отменено обещание выдать демо-доступ",
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 46,
+                "quote": "Я отправлю вам демо-доступ до 16 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 38,
+                "quote": "Демо пока не нужно, отменяем отправку.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s3",
+                "start_cp": 0,
+                "end_cp": 25,
+                "quote": "Хорошо, отправку отменяю.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 46,
+            "quote": "Я отправлю вам демо-доступ до 16 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 38,
+            "quote": "Демо пока не нужно, отменяем отправку.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s3",
+            "start_cp": 0,
+            "end_cp": 25,
+            "quote": "Хорошо, отправку отменяю.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": "В конце диалога нет действующего обязательства."
+      }
+    },
+    {
+      "id": "syn_08",
+      "title": "Перенос срока",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Подготовлю смету до 17 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Перенесём срок на 20 октября 2026?",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s3",
+          "position": 2,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Согласна, пришлю смету до 20 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "reschedule"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Подготовить и отправить смету",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 20 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-20"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 36,
+                "quote": "Подготовлю смету до 17 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 34,
+                "quote": "Перенесём срок на 20 октября 2026?",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s3",
+                "start_cp": 0,
+                "end_cp": 42,
+                "quote": "Согласна, пришлю смету до 20 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "kind": "rescheduled",
+            "description": "17 октября заменено на 20 октября 2026",
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 36,
+                "quote": "Подготовлю смету до 17 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s3",
+                "start_cp": 0,
+                "end_cp": 42,
+                "quote": "Согласна, пришлю смету до 20 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 36,
+            "quote": "Подготовлю смету до 17 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 34,
+            "quote": "Перенесём срок на 20 октября 2026?",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s3",
+            "start_cp": 0,
+            "end_cp": 42,
+            "quote": "Согласна, пришлю смету до 20 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_09",
+      "title": "Три дня от даты звонка",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Пришлите инструкцию.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я отправлю её через 3 дня от сегодняшнего разговора.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "relative_date"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить инструкцию",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "через 3 дня от сегодняшнего разговора",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-17"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 20,
+                "quote": "Пришлите инструкцию.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 52,
+                "quote": "Я отправлю её через 3 дня от сегодняшнего разговора.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 20,
+            "quote": "Пришлите инструкцию.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 52,
+            "quote": "Я отправлю её через 3 дня от сегодняшнего разговора.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_10",
+      "title": "Следующий понедельник",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я перезвоню вам в следующий понедельник, 19 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Да, жду звонка.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "weekday_explicit_date"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Перезвонить клиенту",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "в следующий понедельник, 19 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-19"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 57,
+                "quote": "Я перезвоню вам в следующий понедельник, 19 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 15,
+                "quote": "Да, жду звонка.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 57,
+            "quote": "Я перезвоню вам в следующий понедельник, 19 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 15,
+            "quote": "Да, жду звонка.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_11",
+      "title": "Пятница в день звонка",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-16T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Когда будет расчёт?",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Отправлю до пятницы.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "weekday_ambiguous"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить расчёт",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "unknown",
+              "timezone": "Europe/Minsk",
+              "original_text": "до пятницы",
+              "basis_call_at": "2026-10-16T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": true,
+              "ambiguity_reasons": [
+                "friday_same_day_ambiguous"
+              ]
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [
+              "due"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 19,
+                "quote": "Когда будет расчёт?",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 20,
+                "quote": "Отправлю до пятницы.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 19,
+            "quote": "Когда будет расчёт?",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 20,
+            "quote": "Отправлю до пятницы.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_12",
+      "title": "Завтра на границе года",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-12-31T23:30:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я отправлю вам поздравительный макет завтра.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Договорились.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "relative_date",
+        "year_boundary"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить поздравительный макет",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "завтра",
+              "basis_call_at": "2026-12-31T23:30:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2027-01-01"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 44,
+                "quote": "Я отправлю вам поздравительный макет завтра.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 13,
+                "quote": "Договорились.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 44,
+            "quote": "Я отправлю вам поздравительный макет завтра.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 13,
+            "quote": "Договорились.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_13",
+      "title": "Год не указан",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-12-20T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Пришлите план до 15 января.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Хорошо, пришлю до 15 января, год ещё уточним.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "year_ambiguous"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить план",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "unknown",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 15 января",
+              "basis_call_at": "2026-12-20T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": true,
+              "ambiguity_reasons": [
+                "year_not_confirmed"
+              ]
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [
+              "due"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 27,
+                "quote": "Пришлите план до 15 января.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 45,
+                "quote": "Хорошо, пришлю до 15 января, год ещё уточним.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 27,
+            "quote": "Пришлите план до 15 января.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 45,
+            "quote": "Хорошо, пришлю до 15 января, год ещё уточним.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_14",
+      "title": "Встреча с точным временем",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Встречаемся 16 октября 2026 в 11:00 по Минску в вашем офисе.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Подтверждаю встречу в это время.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "meeting",
+        "instant"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Провести встречу в офисе клиента",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "instant",
+              "timezone": "Europe/Minsk",
+              "original_text": "16 октября 2026 в 11:00 по Минску",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "at": "2026-10-16T11:00:00+03:00"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 60,
+                "quote": "Встречаемся 16 октября 2026 в 11:00 по Минску в вашем офисе.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 32,
+                "quote": "Подтверждаю встречу в это время.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 60,
+            "quote": "Встречаемся 16 октября 2026 в 11:00 по Минску в вашем офисе.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 32,
+            "quote": "Подтверждаю встречу в это время.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_15",
+      "title": "Интервал доставки",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Доставим роутер 20 октября 2026 с 12:00 до 14:00 по Минску.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Хорошо, буду на месте.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "interval"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Доставить роутер",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "interval",
+              "timezone": "Europe/Minsk",
+              "original_text": "20 октября 2026 с 12:00 до 14:00 по Минску",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "start": "2026-10-20T12:00:00+03:00",
+              "end": "2026-10-20T14:00:00+03:00"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 59,
+                "quote": "Доставим роутер 20 октября 2026 с 12:00 до 14:00 по Минску.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 22,
+                "quote": "Хорошо, буду на месте.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 59,
+            "quote": "Доставим роутер 20 октября 2026 с 12:00 до 14:00 по Минску.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 22,
+            "quote": "Хорошо, буду на месте.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_16",
+      "title": "Неизвестное имя говорящего",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_unknown",
+          "display_name": null,
+          "role": "unknown",
+          "identity_state": "unresolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_unknown",
+          "participant_id": "p_unknown",
+          "text": "Я отправлю файл до 18 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Спасибо, жду.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "unknown_participant"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить файл",
+            "obligor_participant_id": "p_unknown",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 18 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-18"
+            },
+            "condition": null,
+            "eligibility": "needs_review",
+            "needs_details": [
+              "obligor_identity"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 35,
+                "quote": "Я отправлю файл до 18 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 13,
+                "quote": "Спасибо, жду.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 35,
+            "quote": "Я отправлю файл до 18 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 13,
+            "quote": "Спасибо, жду.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_17",
+      "title": "Слова о третьем лице",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_anna",
+          "display_name": "Анна",
+          "role": "other",
+          "identity_state": "unresolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Анна подготовит вам договор до 19 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Уточните, пожалуйста, у Анны, что она согласна.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "third_party"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Подготовить договор",
+            "obligor_participant_id": "p_anna",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 19 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-19"
+            },
+            "condition": null,
+            "eligibility": "needs_review",
+            "needs_details": [
+              "obligor_confirmation"
+            ],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 47,
+                "quote": "Анна подготовит вам договор до 19 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 47,
+                "quote": "Уточните, пожалуйста, у Анны, что она согласна.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 47,
+            "quote": "Анна подготовит вам договор до 19 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 47,
+            "quote": "Уточните, пожалуйста, у Анны, что она согласна.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_18",
+      "title": "Сумма и срок оплаты",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Нужно оплатить 350 белорусских рублей.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Я перечислю вам 350 белорусских рублей до 18 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "amount"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Перечислить 350 белорусских рублей",
+            "obligor_participant_id": "p_client",
+            "recipient_participant_id": "p_manager",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 18 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-18"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 38,
+                "quote": "Нужно оплатить 350 белорусских рублей.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 58,
+                "quote": "Я перечислю вам 350 белорусских рублей до 18 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 38,
+            "quote": "Нужно оплатить 350 белорусских рублей.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 58,
+            "quote": "Я перечислю вам 350 белорусских рублей до 18 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_19",
+      "title": "Исправление оговорки",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я пришлю акт 18 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Поправка: 19 октября 2026, восемнадцатого не успею.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s3",
+          "position": 2,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Хорошо, согласен на 19 октября.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "date_correction"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить акт",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "19 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-19"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 29,
+                "quote": "Я пришлю акт 18 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 51,
+                "quote": "Поправка: 19 октября 2026, восемнадцатого не успею.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s3",
+                "start_cp": 0,
+                "end_cp": 31,
+                "quote": "Хорошо, согласен на 19 октября.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "kind": "corrected",
+            "description": "Оговорка о 18 октября исправлена на 19 октября",
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 29,
+                "quote": "Я пришлю акт 18 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 51,
+                "quote": "Поправка: 19 октября 2026, восемнадцатого не успею.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 29,
+            "quote": "Я пришлю акт 18 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 51,
+            "quote": "Поправка: 19 октября 2026, восемнадцатого не успею.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s3",
+            "start_cp": 0,
+            "end_cp": 31,
+            "quote": "Хорошо, согласен на 19 октября.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_20",
+      "title": "Явный отказ обещать",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Сможете подготовить предложение завтра?",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Завтра не обещаю и обязательство не беру.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "negative",
+        "negation"
+      ],
+      "gold": {
+        "agreements": [],
+        "events": [],
+        "key_phrases": [],
+        "negative_reason": "Прямой отказ от обязательства."
+      }
+    },
+    {
+      "id": "syn_21",
+      "title": "Сообщение о прошлом",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я уже отправила вам договор вчера.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Да, получил, новых действий не требуется.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "negative",
+        "historical"
+      ],
+      "gold": {
+        "agreements": [],
+        "events": [],
+        "key_phrases": [],
+        "negative_reason": "Сообщается о выполненном прошлом действии, будущей договорённости нет."
+      }
+    },
+    {
+      "id": "syn_22",
+      "title": "Просьба и короткое согласие",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Пришлите мне счёт до 21 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Да, сделаю.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "cross_segment_evidence"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить счёт",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 21 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-21"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 37,
+                "quote": "Пришлите мне счёт до 21 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 11,
+                "quote": "Да, сделаю.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 37,
+            "quote": "Пришлите мне счёт до 21 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 11,
+            "quote": "Да, сделаю.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_23",
+      "title": "Unicode и внутренняя цитата",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Нужен файл «Ёлка 🌲».",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Спасибо! Я отправлю файл «Ёлка 🌲» до 22 октября 2026. До связи.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "unicode_code_points",
+        "quote_substring"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Отправить файл «Ёлка 🌲»",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 22 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-22"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 20,
+                "quote": "Нужен файл «Ёлка 🌲».",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 9,
+                "end_cp": 53,
+                "quote": "Я отправлю файл «Ёлка 🌲» до 22 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 20,
+            "quote": "Нужен файл «Ёлка 🌲».",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 9,
+            "end_cp": 53,
+            "quote": "Я отправлю файл «Ёлка 🌲» до 22 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    },
+    {
+      "id": "syn_24",
+      "title": "Адресат и срок в разных репликах",
+      "synthetic": true,
+      "text_only": true,
+      "no_real_audio": true,
+      "usage": "development_fixture",
+      "call_at": "2026-10-14T10:00:00+03:00",
+      "timezone": "Europe/Minsk",
+      "language": "ru",
+      "transcript_revision": "r1",
+      "participants": [
+        {
+          "id": "p_manager",
+          "display_name": "Ирина",
+          "role": "manager",
+          "identity_state": "resolved"
+        },
+        {
+          "id": "p_client",
+          "display_name": "Павел",
+          "role": "client",
+          "identity_state": "resolved"
+        }
+      ],
+      "segments": [
+        {
+          "id": "s1",
+          "position": 0,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Я подготовлю отчёт для вас.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s2",
+          "position": 1,
+          "speaker_id": "p_client",
+          "participant_id": "p_client",
+          "text": "Отправьте его мне до 23 октября 2026.",
+          "start_ms": null,
+          "end_ms": null
+        },
+        {
+          "id": "s3",
+          "position": 2,
+          "speaker_id": "p_manager",
+          "participant_id": "p_manager",
+          "text": "Подготовлю и отправлю к указанному сроку.",
+          "start_ms": null,
+          "end_ms": null
+        }
+      ],
+      "tags": [
+        "cross_segment_evidence",
+        "recipient"
+      ],
+      "gold": {
+        "agreements": [
+          {
+            "id": "g1",
+            "action": "Подготовить и отправить отчёт",
+            "obligor_participant_id": "p_manager",
+            "recipient_participant_id": "p_client",
+            "due": {
+              "kind": "date_only",
+              "timezone": "Europe/Minsk",
+              "original_text": "до 23 октября 2026",
+              "basis_call_at": "2026-10-14T10:00:00+03:00",
+              "normalization_source": "fixture",
+              "ambiguous": false,
+              "ambiguity_reasons": [],
+              "date": "2026-10-23"
+            },
+            "condition": null,
+            "eligibility": "candidate",
+            "needs_details": [],
+            "evidence": [
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s1",
+                "start_cp": 0,
+                "end_cp": 27,
+                "quote": "Я подготовлю отчёт для вас.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s2",
+                "start_cp": 0,
+                "end_cp": 37,
+                "quote": "Отправьте его мне до 23 октября 2026.",
+                "start_ms": null,
+                "end_ms": null
+              },
+              {
+                "transcript_revision": "r1",
+                "segment_id": "s3",
+                "start_cp": 0,
+                "end_cp": 41,
+                "quote": "Подготовлю и отправлю к указанному сроку.",
+                "start_ms": null,
+                "end_ms": null
+              }
+            ]
+          }
+        ],
+        "events": [],
+        "key_phrases": [
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s1",
+            "start_cp": 0,
+            "end_cp": 27,
+            "quote": "Я подготовлю отчёт для вас.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s2",
+            "start_cp": 0,
+            "end_cp": 37,
+            "quote": "Отправьте его мне до 23 октября 2026.",
+            "start_ms": null,
+            "end_ms": null
+          },
+          {
+            "transcript_revision": "r1",
+            "segment_id": "s3",
+            "start_cp": 0,
+            "end_cp": 41,
+            "quote": "Подготовлю и отправлю к указанному сроку.",
+            "start_ms": null,
+            "end_ms": null
+          }
+        ],
+        "negative_reason": null
+      }
+    }
+  ]
+}

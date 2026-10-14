@@ -1,0 +1,29 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Python tooling
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+dist/
+build/
+
+# Local generated data: audio, PostgreSQL dumps and runtime output
+.local/
+data/
+*.dump
+*.sql.gz
+*.log
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
