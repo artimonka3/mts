@@ -1,0 +1,213 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MTS conversation assistant backend",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health/live": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Live",
+        "operationId": "live_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Ready",
+        "operationId": "ready_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Database or schema is not ready.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/capabilities": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Capabilities",
+        "operationId": "capabilities_api_v1_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CapabilitiesResponse": {
+        "properties": {
+          "stage": {
+            "type": "integer",
+            "const": 2,
+            "title": "Stage",
+            "default": 2
+          },
+          "processing": {
+            "$ref": "#/components/schemas/DisabledProcessing"
+          },
+          "business_api": {
+            "type": "string",
+            "const": "not_implemented",
+            "title": "Business Api",
+            "default": "not_implemented"
+          }
+        },
+        "type": "object",
+        "required": [
+          "processing"
+        ],
+        "title": "CapabilitiesResponse"
+      },
+      "DisabledProcessing": {
+        "properties": {
+          "asr": {
+            "type": "string",
+            "const": "disabled",
+            "title": "Asr",
+            "default": "disabled"
+          },
+          "diarization": {
+            "type": "string",
+            "const": "disabled",
+            "title": "Diarization",
+            "default": "disabled"
+          },
+          "llm": {
+            "type": "string",
+            "const": "disabled",
+            "title": "Llm",
+            "default": "disabled"
+          }
+        },
+        "type": "object",
+        "title": "DisabledProcessing"
+      },
+      "ErrorEnvelope": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorPayload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorEnvelope"
+      },
+      "ErrorPayload": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "details": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "title": "ErrorPayload"
+      },
+      "LiveResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok",
+            "title": "Status",
+            "default": "ok"
+          }
+        },
+        "type": "object",
+        "title": "LiveResponse"
+      },
+      "ReadyResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ready",
+            "title": "Status",
+            "default": "ready"
+          },
+          "database": {
+            "type": "string",
+            "const": "ok",
+            "title": "Database",
+            "default": "ok"
+          },
+          "schema": {
+            "type": "string",
+            "const": "0001_bootstrap",
+            "title": "Schema",
+            "default": "0001_bootstrap"
+          }
+        },
+        "type": "object",
+        "title": "ReadyResponse"
+      }
+    }
+  }
+}

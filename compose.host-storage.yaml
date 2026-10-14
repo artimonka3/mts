@@ -1,0 +1,10 @@
+# Optional local-development storage mode.
+# Compose replaces the db mount at this target with a host bind mount.
+services:
+  db:
+    volumes:
+      - type: bind
+        source: ./.local/postgres
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: true
