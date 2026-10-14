@@ -1,5 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:device_calendar/device_calendar.dart';
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../data/icalendar.dart';
 import '../data/store.dart';
 import '../format.dart';
 import '../models/models.dart';
@@ -31,6 +37,144 @@ class _CalendarScreenState extends State<CalendarScreen> {
     setState(() {
       _month = DateTime(_month.year, _month.month + delta);
     });
+  }
+
+  Future<void> _exportMenu(Store store) async {
+    final dated = store.commitments.where((task) => task.dueDate != null);
+    if (dated.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Нет задач с датой для экспорта')),
+      );
+      return;
+    }
+    final action = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.calendar_month_rounded, color: C.red),
+                title: const Text('В календарь Apple'),
+                subtitle: const Text(
+                  'События появятся в приложении «Календарь»',
+                ),
+                onTap: () => Navigator.pop(context, 'apple'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.ios_share_rounded, color: C.red),
+                title: const Text('Файл .ics'),
+                subtitle: const Text('Для CRM и других календарей'),
+                onTap: () => Navigator.pop(context, 'ics'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    if (!mounted || action == null) return;
+    if (action == 'apple') {
+      await _addToAppleCalendar(store);
+    } else {
+      await _export(store);
+    }
+  }
+
+  Future<void> _addToAppleCalendar(Store store) async {
+    final dated = store.commitments
+        .where((task) => task.dueDate != null)
+        .toList();
+    final plugin = DeviceCalendarPlugin();
+    final permission = await plugin.requestPermissions();
+    if (!mounted) return;
+    if (!(permission.data ?? false)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Разрешите доступ к календарю в настройках'),
+        ),
+      );
+      return;
+    }
+    final calendars = await plugin.retrieveCalendars();
+    final writable =
+        calendars.data?.where((item) => item.isReadOnly != true).toList() ?? [];
+    if (!mounted) return;
+    if (writable.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('На телефоне нет календаря, куда можно записать'),
+        ),
+      );
+      return;
+    }
+    final calendar = writable.cast<Calendar?>().firstWhere(
+      (item) => item?.isDefault == true,
+      orElse: () => writable.first,
+    );
+    var added = 0;
+    for (final task in dated) {
+      final start = DateTime(
+        task.dueDate!.year,
+        task.dueDate!.month,
+        task.dueDate!.day,
+      );
+      final client = store.clientOf(task.clientId);
+      final who = task.owner == CommitmentOwner.us ? 'Мы' : 'Клиент';
+      final result = await plugin.createOrUpdateEvent(
+        Event(
+          calendar?.id,
+          title: task.text,
+          description: [
+            if (client != null) client.name,
+            if (client?.company != null) client!.company,
+            'Ответственный: $who',
+            if (task.quote != null) task.quote,
+          ].join('\n'),
+          start: start,
+          end: start.add(const Duration(days: 1)),
+          allDay: true,
+        ),
+      );
+      if (result?.isSuccess == true) added++;
+    }
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('В календарь добавлено: $added')));
+  }
+
+  Future<void> _export(Store store) async {
+    final dated = store.commitments
+        .where((task) => task.dueDate != null)
+        .toList();
+    if (dated.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Нет задач с датой для экспорта')),
+      );
+      return;
+    }
+    final ics = buildICalendar(tasks: dated, clientOf: store.clientOf);
+    final dir = await getTemporaryDirectory();
+    final file = File('${dir.path}/dogovorennosti.ics');
+    await file.writeAsString(ics);
+    if (!mounted) return;
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [
+          XFile(
+            file.path,
+            mimeType: 'text/calendar',
+            name: 'dogovorennosti.ics',
+          ),
+        ],
+        fileNameOverrides: const ['dogovorennosti.ics'],
+        subject: 'Договорённости',
+      ),
+    );
   }
 
   Future<void> _create(Store store) async {
@@ -191,7 +335,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(kPage, 12, kPage, 28),
       children: [
-        const Text('Задачи', style: T.title),
+        Row(
+          children: [
+            const Expanded(child: Text('Задачи', style: T.title)),
+            IconButton(
+              onPressed: () => _exportMenu(store),
+              icon: const Icon(Icons.ios_share_rounded, color: C.red),
+              tooltip: 'Экспорт iCalendar',
+            ),
+          ],
+        ),
         const SizedBox(height: 4),
         const Text(
           'Нажмите день, чтобы спланировать',
