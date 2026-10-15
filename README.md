@@ -1,2 +1,4 @@
 # mts
-Our project
+Our project for MTS corp hachaton
+
+**UPD:** Closed, we didn't win(((
