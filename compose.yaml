@@ -1,0 +1,97 @@
+name: mts-backend
+
+x-backend: &backend
+  build:
+    context: ./backend
+  image: mts-backend:local
+  env_file:
+    - .env
+  environment:
+    MTS_DATABASE_URL: ${MTS_DATABASE_URL:?Copy .env.example to .env first}
+    MTS_FIXTURE_PATH: /fixtures/dialogues_v1.json
+    MTS_AUDIO_STORAGE_PATH: /audio
+    MTS_DATA_ENCRYPTION_KEY: ${MTS_DATA_ENCRYPTION_KEY:?Generate data encryption key}
+    MTS_AUDIO_ENCRYPTION_KEY: ${MTS_AUDIO_ENCRYPTION_KEY:?Generate audio encryption key}
+    MTS_CRM_WEBHOOK_TOKEN: ${MTS_CRM_WEBHOOK_TOKEN:?Generate local webhook token}
+  volumes:
+    - ./.local/audio:/audio
+    - ./fixtures:/fixtures:ro
+  init: true
+  read_only: true
+  tmpfs:
+    - /tmp:size=600m,mode=1777
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${MTS_POSTGRES_DB:?Set MTS_POSTGRES_DB in .env}
+      POSTGRES_USER: ${MTS_POSTGRES_USER:?Set MTS_POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${MTS_POSTGRES_PASSWORD:?Set MTS_POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          pg_isready -q -t 1 -h 127.0.0.1 -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+          && PGPASSWORD="$$POSTGRES_PASSWORD" PGCONNECT_TIMEOUT=2
+          psql -h 127.0.0.1 -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+          -X -w -v ON_ERROR_STOP=1 -Atqc 'SELECT 1' >/dev/null
+      interval: 3s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+    restart: unless-stopped
+
+  migrate:
+    <<: *backend
+    command: ["python", "-m", "alembic", "upgrade", "head"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=4).close()"
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "mts_backend.worker"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  mock-crm:
+    <<: *backend
+    command: ["python", "-m", "uvicorn", "mts_backend.integrations.mock_crm:app", "--host", "0.0.0.0", "--port", "8001", "--no-access-log"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  pgdata:

@@ -1,1 +1,68 @@
-.obsidian
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Widget Preview related
+.widget_preview/
+
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.trash/
+
+# Системные файлы macOS и Windows
+Thumbs.db
+Desktop.ini
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Python tooling
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+dist/
+
+# Local generated data: audio, PostgreSQL dumps and runtime output
+.local/
+/data/
+*.dump
+*.sql.gz
+
+# Editors
+.vscode/
