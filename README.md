@@ -1,4 +1,6 @@
-# МТС: Backend MVP, трек №2
+# **UPD:** Closed, we didn't win(((
+
+## МТС: Backend MVP, трек №2
 
 Backend для загрузки разговора → результата → подтверждённых задач → экспорта,
 напоминаний и дашборда. Python 3.12 / FastAPI / PostgreSQL / SQLAlchemy / Alembic.
@@ -8,7 +10,7 @@ API, worker и локальный mock CRM — отдельные процесс
 text-only fixtures. Произвольное аудио принимается/проверяется/подготавливается;
 текст и договорённости можно вводить вручную. Реальной модельной точности нет.
 
-## Быстрый запуск
+### Быстрый запуск
 
 Нужны Docker с Compose v2, Python 3.12 для локальных команд и свободные порты
 8000/55432. Из корня проекта:
@@ -44,7 +46,7 @@ make down-host
 баз, затем создайте только отсутствующую пустую базу и повторите `make up-host`.
 Не используйте reset/prune как универсальное исправление.
 
-## Что работает
+### Что работает
 
 - Cookie-вход, CSRF, logout, persistent login throttling, owner-only доступ.
 - Клиенты, upload/browser recording file, demo, metadata, аудио Range и подготовка
@@ -63,7 +65,7 @@ make down-host
 Создание demo/upload и переходы Agreement дополнительно требуют `Idempotency-Key`.
 Правки и переходы принимают актуальный `expected_version`; stale →409.
 
-## Проверки и демо
+### Проверки и демо
 
 ```sh
 make setup
@@ -89,3 +91,5 @@ predictions на development corpus, а не доказательство точ
 
 [Итоги и ревью](docs/MVP_STATUS.md) · [Демо на 3 минуты](docs/DEMO.md) · [Ограничения](docs/LIMITATIONS.md)
 · [Исходный план](План_Backend_МТС_трек_2.md) · [Ревью этапов](docs/reviews).
+# mts
+
